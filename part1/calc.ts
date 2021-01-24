@@ -1,3 +1,4 @@
+export {};
 enum TokenTypes {
   INTEGER = "INTEGER",
   PLUS = "PLUS",
@@ -8,8 +9,8 @@ console.log(TokenTypes);
 
 class Token {
   type: TokenTypes;
-  value: number | string;
-  constructor(type: TokenTypes, value: number | string) {
+  value: number | string | null;
+  constructor(type: TokenTypes, value: number | string | null) {
     this.type = type;
     this.value = value;
   }
@@ -18,14 +19,14 @@ class Token {
 class Interpreter {
   text: string;
   pos: number;
-  current_token: Token;
+  current_token: Token | null;
   constructor(text: string) {
     this.text = text;
     this.pos = 0;
     this.current_token = null;
   }
 
-  isIntegerChar(char) {
+  isIntegerChar(char: string) {
     return char !== "" && Number.isInteger(Number(char));
   }
 
@@ -35,7 +36,11 @@ class Interpreter {
     if (this.pos > text.length - 1) {
       return new Token(TokenTypes.EOF, null);
     }
-    const currentChar = text[this.pos];
+    let currentChar = text[this.pos];
+    while (currentChar === " ") {
+      this.pos++;
+      currentChar = text[this.pos];
+    }
     if (this.isIntegerChar(currentChar)) {
       const token = new Token(TokenTypes.INTEGER, Number(currentChar));
       this.pos++;
@@ -48,8 +53,8 @@ class Interpreter {
     }
     throw new Error("无法生成相对应的token");
   }
-  eat(tokenType) {
-    if (this.current_token.type === tokenType) {
+  eat(tokenType: TokenTypes) {
+    if (this.current_token?.type === tokenType) {
       this.current_token = this.getNextToken();
     } else {
       throw new Error("类型不匹配");
