@@ -1,5 +1,5 @@
 {
-  "name": "lsbasi",
+  "name": "my-first-interpreter",
   "version": "1.0.0",
   "description": "Source code for the series **Let's Build A Simple Interpreter** (Supports Python 3.7+ only)",
   "main": "index.js",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AngryChocobo/lsbasi.git"
+    "url": "git+https://github.com/AngryChocobo/my-first-interpreter.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AngryChocobo/lsbasi/issues"
+    "url": "https://github.com/AngryChocobo/my-first-interpreter/issues"
   },
-  "homepage": "https://github.com/AngryChocobo/lsbasi#readme"
+  "homepage": "https://github.com/AngryChocobo/my-first-interpreter#readme"
 }
